@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild, Output, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, Input, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 import { SearchModel } from './model/search-model';
-import { EventEmitter } from 'events';
 import { Movie } from '../../model/movie';
 
 @Component({

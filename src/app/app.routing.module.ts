@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { MovieDetailsComponent } from './feature/movie-details/movie-details.component';
 import { MoviesListComponent } from './feature/movies-list/movies-list.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: 'movies', pathMatch: 'full' },
   { path: 'movies', component: MoviesListComponent },
