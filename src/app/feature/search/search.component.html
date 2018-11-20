@@ -1,15 +1,19 @@
 <mat-form-field [floatLabel]="'never'">
-	<mat-icon matPrefix>search</mat-icon>
-	<input #nameSearch
-	       matInput
-	       placeholder="filter movie by a name"
-	       [formControl]="searchFormControl"
-	       (keyup.enter)="search(nameSearch.value)"
-	       [matAutocomplete]="auto">
+  <mat-icon matPrefix>search</mat-icon>
+  <input #nameSearch
+         matInput
+         placeholder="filter movie by a name"
+         [formControl]="searchFormControl"
+         (keyup.enter)="search(nameSearch.value)"
+         [matAutocomplete]="auto">
 </mat-form-field>
 <mat-autocomplete #auto="matAutocomplete">
-	<mat-option *ngFor="let option of names"
-	            [value]="option">
-		{{ option }}
-	</mat-option>
+  <cdk-virtual-scroll-viewport itemSize="50"
+                               class="example-viewport">
+    <mat-option class="example-item" *cdkVirtualFor="let option of names"
+                [value]="option">
+      {{ option }}
+    </mat-option>
+  </cdk-virtual-scroll-viewport>
+
 </mat-autocomplete>

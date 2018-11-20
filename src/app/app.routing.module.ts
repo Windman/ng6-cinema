@@ -1,13 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { CinemaComponent } from './feature/cinema/cinema.component';
 import { MovieDetailsComponent } from './feature/movie-details/movie-details.component';
-import { MoviesListComponent } from './feature/movies-list/movies-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'movies', pathMatch: 'full' },
-  { path: 'movies', component: MoviesListComponent },
+  { path: 'movies', component: CinemaComponent },
   { path: 'details/:id', component: MovieDetailsComponent },
-  { path: '**', redirectTo: '/notfound', pathMatch: 'full' }
+  { path: '**', redirectTo: '/movies', pathMatch: 'full' } // TODO change route and provide special 404 component
 ];
 
 @NgModule({

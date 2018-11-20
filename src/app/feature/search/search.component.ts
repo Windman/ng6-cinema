@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, Input, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
@@ -8,11 +8,13 @@ import { Movie } from '../../model/movie';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnInit {
   @Input() movies: Movie[];
   @Output() complete = new EventEmitter<Movie[]>();
+  @Output() reset = new EventEmitter();
 
   @ViewChild(MatAutocomplete)
   private autoCmplt: MatAutocomplete;
@@ -36,7 +38,12 @@ export class SearchComponent implements OnInit {
       .pipe(
         startWith('')
       ).subscribe(criteria => {
-        this.names = criteria ? this.model.filterNames(criteria) : this.model.names.slice();
+        if (criteria) {
+          this.names = this.model.filterNames(criteria);
+        } else {
+          this.names = this.model.names.slice();
+          this.reset.emit();
+        }
       });
 
     this.autoCmplt.optionSelected

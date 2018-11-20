@@ -1,8 +1,8 @@
-import { MoviesService } from '../../services/movies-service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Movie } from '../../model/movie';
+import { MoviesService } from '../../services/movies-service';
 
 @Component({
   selector: 'app-movie-details',

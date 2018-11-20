@@ -29,6 +29,7 @@ import {
 } from '@angular/material';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ScrollDispatchModule
   ],
   exports: [
     MatMenuModule,
@@ -88,7 +90,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ScrollDispatchModule
   ],
 })
 export class CustomMaterialModule { }

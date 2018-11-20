@@ -14,6 +14,7 @@ import { BaseComponent } from './base.component';
 import { MoviesService } from './services/movies-service';
 import { SearchComponent } from './feature/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { CinemaComponent } from './feature/cinema/cinema.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/fo
     MoviesListComponent,
     MovieItemComponent,
     MovieDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    CinemaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,5 @@
+<app-search [movies]="movies"
+            (complete)="onSearchComplete($event)"
+            (reset)="onSearchReset()">
+</app-search>
+<app-movies-list [movies]="movies"></app-movies-list>
