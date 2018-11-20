@@ -1,5 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -11,6 +13,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { BaseComponent } from './base.component';
 import { MoviesService } from './services/movies-service';
 import { SearchComponent } from './feature/search/search.component';
+import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { SearchComponent } from './feature/search/search.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     CustomMaterialModule,
     AppRoutingModule
   ],
