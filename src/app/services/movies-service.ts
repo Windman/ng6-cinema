@@ -1,21 +1,28 @@
-import { movies } from './../../data/movie.mock-data';
-import { Movie } from './../model/movie';
+import { Movie } from '../model/movie';
 import { Injectable } from '@angular/core';
-import { Observable } from '../../../node_modules/rxjs/internal/Observable';
-import { of } from '../../../node_modules/rxjs/internal/observable/of';
+import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs/internal/observable/of';
 
-const data = require('../../data/movie.mock-data');
+import { movies } from '../../data/movie.mock-data';
 
 @Injectable()
 export class MoviesService {
 
   constructor() {
-    console.log(data);
+
   }
 
   getMovies(): Observable<Movie[]> {
-    return of(data.movies.map(item => {
+    return of(movies.map(item => {
       return new Movie(item);
     }));
+  }
+
+  getMovie(id: number): Observable<Movie> {
+    return of(movies.filter(i => i.id === id).map(item => {
+      return new Movie(item);
+    }).reduce((p, k) => {
+      return k;
+    }, new Movie()));
   }
 }
