@@ -1,6 +1,8 @@
 <ul>
   <li *ngFor="let movie of movies">
-    <app-movie-item [movie]='movie'
+    <app-movie-item id={{movie.id}}
+                    class="movie-item"
+                    [movie]='movie'
                     (click)="onMovieClick(movie)">
     </app-movie-item>
   </li>

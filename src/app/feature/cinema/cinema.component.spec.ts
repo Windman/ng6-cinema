@@ -1,16 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
+import { MoviesService } from './../../services/movies-service';
 import { CinemaComponent } from './cinema.component';
 
 describe('CinemaComponent', () => {
   let component: CinemaComponent;
   let fixture: ComponentFixture<CinemaComponent>;
 
+  const moviesServiceMock = new MoviesService();
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CinemaComponent ]
+      declarations: [CinemaComponent],
+      providers: [
+        { provide: MoviesService, useValue: moviesServiceMock }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

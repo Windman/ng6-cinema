@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { BaseComponent } from './../../base.component';
-import { MoviesService } from './../../services/movies-service';
-import { Movie } from './../../model/movie';
+import { BaseComponent } from '../../base.component';
+import { MoviesService } from '../../services/movies-service';
+import { Movie } from '../../model/movie';
 
 @Component({
   selector: 'app-cinema',

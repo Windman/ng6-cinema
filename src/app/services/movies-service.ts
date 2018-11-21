@@ -34,6 +34,6 @@ export class MoviesService {
       return new Movie(item);
     }).reduce((p, k) => {
       return k;
-    }, new Movie()));
+    }, null));
   }
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieItemComponent } from './movie-item.component';
+import { Movie } from '../../../model/movie';
 
 describe('MovieItemComponent', () => {
   let component: MovieItemComponent;
@@ -16,6 +17,7 @@ describe('MovieItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MovieItemComponent);
     component = fixture.componentInstance;
+    component.movie = new Movie();
     fixture.detectChanges();
   });
 

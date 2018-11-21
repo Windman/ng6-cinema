@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '../../../../node_modules/@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Movie } from '../../model/movie';
 
@@ -8,10 +8,14 @@ import { Movie } from '../../model/movie';
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.scss']
 })
-export class MoviesListComponent {
+export class MoviesListComponent implements OnInit {
   @Input() movies: Movie[];
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
+
+  }
+
+  ngOnInit() {
 
   }
 

@@ -1,6 +1,10 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
+import { CustomMaterialModule } from '../../lib/material/custom-material.module';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -8,7 +12,14 @@ describe('SearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+      declarations: [ SearchComponent ],
+      imports: [
+        BrowserAnimationsModule,
+        CustomMaterialModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

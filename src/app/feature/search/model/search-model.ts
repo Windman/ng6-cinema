@@ -1,4 +1,4 @@
-import { Movie } from './../../../model/movie';
+import { Movie } from '../../../model/movie';
 import { Observable, of } from 'rxjs';
 
 export class SearchModel {
