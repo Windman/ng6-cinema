@@ -1,9 +1,12 @@
 <div class="cinema">
-  <app-search class="search"
-              [movies]="movies"
-              (complete)="onSearchComplete($event)"
-              (reset)="onSearchReset()">
-  </app-search>
+  <div class="cinema-filter">
+    <app-search class="search"
+                [movies]="movies"
+                (complete)="onSearchComplete($event)"
+                (reset)="onSearchReset()">
+    </app-search>
+    <app-genre-filter [genres]="genres"></app-genre-filter>
+  </div>
   <app-movies-list class="movies-list"
                    [movies]="movies"></app-movies-list>
 </div>

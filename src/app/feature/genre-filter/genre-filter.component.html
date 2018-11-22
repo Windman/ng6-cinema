@@ -1,0 +1,11 @@
+<mat-form-field>
+    <mat-select placeholder="Genres" [formControl]="genresForm" multiple>
+      <mat-select-trigger>
+        {{genresForm.value ? genresForm.value[0] : ''}}
+        <span *ngIf="genresForm.value?.length > 1" class="example-additional-selection">
+          (+{{genresForm.value.length - 1}} {{genresForm.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let genre of genres" [value]="genre">{{genre}}</mat-option>
+    </mat-select>
+  </mat-form-field>

@@ -3,3 +3,13 @@
   flex-direction: column;
   padding-left: 20px;
 }
+
+.cinema-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+app-search {
+  margin-right: 20px;
+}

@@ -15,6 +15,7 @@ import { MoviesService } from './services/movies-service';
 import { SearchComponent } from './feature/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CinemaComponent } from './feature/cinema/cinema.component';
+import { GenreFilterComponent } from './feature/genre-filter/genre-filter.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CinemaComponent } from './feature/cinema/cinema.component';
     MovieItemComponent,
     MovieDetailsComponent,
     SearchComponent,
-    CinemaComponent
+    CinemaComponent,
+    GenreFilterComponent
   ],
   imports: [
     BrowserModule,
