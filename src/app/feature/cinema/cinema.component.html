@@ -1,6 +1,9 @@
-<app-search [movies]="movies"
-            (complete)="onSearchComplete($event)"
-            (reset)="onSearchReset()">
-</app-search>
-<br>
-<app-movies-list [movies]="movies"></app-movies-list>
+<div class="cinema">
+  <app-search class="search"
+              [movies]="movies"
+              (complete)="onSearchComplete($event)"
+              (reset)="onSearchReset()">
+  </app-search>
+  <app-movies-list class="movies-list"
+                   [movies]="movies"></app-movies-list>
+</div>
