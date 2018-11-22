@@ -66,8 +66,6 @@ describe('MoviesListComponent', () => {
 
   it('should tell ROUTER to navigate when movie clicked', () => {
     // TODO check why *cdkVirtualFor doesn't reflect elements in tests env?
-    fixture.detectChanges();
-
     const movieItem = fixture.debugElement.query(By.css('.movie-item')).nativeElement;
     click(movieItem);
     fixture.detectChanges();
@@ -78,5 +76,10 @@ describe('MoviesListComponent', () => {
 
     expect(url).toBe('/details');
     expect(id).toBe(+movieItem.id);
+  });
+
+  it('should display 24 movies in the cinema', () => {
+    const moviesLength = fixture.debugElement.queryAll(By.css('.movie-item')).length;
+    expect(moviesLength).toBe(24);
   });
 });
