@@ -1,9 +1,9 @@
-<ul>
-  <li *ngFor="let movie of movies">
+<div class="movies-container">
+  <cdk-virtual-scroll-viewport class="movies-viewport"
+                               itemSize="50">
     <app-movie-item id={{movie.id}}
-                    class="movie-item"
-                    [movie]='movie'
-                    (click)="onMovieClick(movie)">
+                    *cdkVirtualFor="let movie of movies"
+                    [movie]="movie">
     </app-movie-item>
-  </li>
-</ul>
+  </cdk-virtual-scroll-viewport>
+</div>

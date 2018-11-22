@@ -1,0 +1,23 @@
+mat-card.movie-item {
+  max-width: 250px;
+  opacity: .8;
+
+  &:hover {
+		opacity: 1;
+	}
+}
+
+mat-card-title.movie-name {
+  width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.movie-description {
+  height: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+

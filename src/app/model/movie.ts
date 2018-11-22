@@ -18,6 +18,7 @@ export const GENRE_TYPE = {
 export class Movie {
   id: number;
   key: string;
+  name: string;
   description: string;
   genres: string[];
   rate: number;
@@ -27,6 +28,7 @@ export class Movie {
   constructor(options: {
     id?: number,
     key?: string,
+    name?: string,
     description?: string,
     genres?: string[],
     rate?: number,
@@ -35,6 +37,7 @@ export class Movie {
   } = {}) {
     this.id = options.id || -1;
     this.key = options.key || 'default';
+    this.name = options.name || 'default';
     this.description = options.description || '';
     this.genres = options.genres || [];
     this.rate = options.rate || -1;

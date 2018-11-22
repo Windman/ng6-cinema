@@ -9,8 +9,8 @@
 </mat-form-field>
 <mat-autocomplete #auto="matAutocomplete">
   <cdk-virtual-scroll-viewport itemSize="50"
-                               class="example-viewport">
-    <mat-option class="example-item" *cdkVirtualFor="let option of names"
+                               class="search-options-viewport">
+    <mat-option class="option-item" *cdkVirtualFor="let option of names"
                 [value]="option">
       {{ option }}
     </mat-option>
