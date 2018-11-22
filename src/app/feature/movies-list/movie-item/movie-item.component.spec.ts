@@ -1,3 +1,6 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { CustomMaterialModule } from './../../../lib/material/custom-material.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieItemComponent } from './movie-item.component';
@@ -9,7 +12,14 @@ describe('MovieItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieItemComponent ]
+      declarations: [
+        MovieItemComponent
+      ],
+      imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        CustomMaterialModule
+      ]
     })
     .compileComponents();
   }));
