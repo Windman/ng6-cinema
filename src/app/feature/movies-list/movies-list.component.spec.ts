@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { By, BrowserModule } from '@angular/platform-browser';
 
@@ -12,15 +12,32 @@ import { movies } from '../../../data/movie.mock-data';
 import { click } from 'testing/click.helper';
 import { CustomMaterialModule } from '../../lib/material/custom-material.module';
 
+@Component({
+  template: `
+  <div class="movies-container">
+    <ng-container *ngFor="let movie of movies">
+      <app-movie-item class="movie-item"
+                      id={{movie.id}}
+                      [movie]="movie"
+                      (click)="onMovieClick(movie)">
+      </app-movie-item>
+    </ng-container>
+  </div>`
+})
+class TestHostComponent extends MoviesListComponent {
+
+}
+
 describe('MoviesListComponent', () => {
-  let component: MoviesListComponent;
-  let fixture: ComponentFixture<MoviesListComponent>;
+  let component: TestHostComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
 
   const routerMock = jasmine.createSpyObj('Router', ['navigateByUrl', 'navigate']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        TestHostComponent,
         MoviesListComponent,
         MovieItemComponent
       ],
@@ -37,7 +54,7 @@ describe('MoviesListComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MoviesListComponent);
+    fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
     component.movies = Object.assign([], movies);
     fixture.detectChanges();
@@ -47,7 +64,7 @@ describe('MoviesListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should tell ROUTER to navigate when movie clicked', () => {
+  it('should tell ROUTER to navigate when movie clicked', () => {
     // TODO check why *cdkVirtualFor doesn't reflect elements in tests env?
     fixture.detectChanges();
 
