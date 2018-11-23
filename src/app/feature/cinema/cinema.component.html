@@ -5,7 +5,10 @@
                 (complete)="onSearchComplete($event)"
                 (reset)="onSearchReset()">
     </app-search>
-    <app-genre-filter [genres]="genres"></app-genre-filter>
+    <app-genre-filter [genres]="genres"
+                      [movies]="movies"
+                      (complete)="onSearchComplete($event)"
+                      (reset)="onSearchReset()"></app-genre-filter>
   </div>
   <app-movies-list class="movies-list"
                    [movies]="movies"></app-movies-list>

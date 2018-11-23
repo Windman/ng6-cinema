@@ -16,6 +16,10 @@ export const GENRE_TYPE = {
 };
 
 export class Movie {
+  get Genres(): string {
+    return this.genres.join(', ');
+  }
+
   id: number;
   key: string;
   name: string;
