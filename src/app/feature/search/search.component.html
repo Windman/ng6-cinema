@@ -1,21 +1,27 @@
-
-    <mat-form-field class="search-form" [floatLabel]="'never'">
-        <mat-icon matPrefix>search</mat-icon>
-        <input #nameSearch
-               matInput
-               placeholder="filter movie by a name"
-               [formControl]="searchFormControl"
-               (keyup.enter)="search(nameSearch.value)"
-               [matAutocomplete]="auto">
-      </mat-form-field>
-      <mat-autocomplete #auto="matAutocomplete">
-        <cdk-virtual-scroll-viewport itemSize="40"
-                                     class="search-options-viewport">
-          <mat-option class="option-item" *cdkVirtualFor="let option of names"
-                      [value]="option">
-            {{ option }}
-          </mat-option>
-        </cdk-virtual-scroll-viewport>
-      </mat-autocomplete>
-
-
+<mat-form-field class="search-form"
+                [floatLabel]="'never'">
+  <mat-icon matPrefix>search</mat-icon>
+  <input #nameSearch
+         matInput
+         placeholder="filter movie by a name"
+         [formControl]="searchFormControl"
+         (keyup.enter)="search(nameSearch.value)"
+         [matAutocomplete]="auto">
+  <button mat-button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clear()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<mat-autocomplete #auto="matAutocomplete">
+  <cdk-virtual-scroll-viewport itemSize="40"
+                               class="search-options-viewport">
+    <mat-option class="option-item"
+                *cdkVirtualFor="let option of names"
+                [value]="option">
+      {{ option }}
+    </mat-option>
+  </cdk-virtual-scroll-viewport>
+</mat-autocomplete>

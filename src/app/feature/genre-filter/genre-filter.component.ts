@@ -23,12 +23,19 @@ export class GenreFilterComponent implements OnInit {
 
     this.genresForm.valueChanges
       .subscribe((genre: any) => {
-        if (genre.length === 0) {
-          this.reset.emit();
-        } else {
-          this.complete.emit(model.applyFilter(genre));
+        if (genre) {
+          if (genre.length === 0) {
+            this.reset.emit();
+          } else {
+            this.complete.emit(model.applyFilter(genre));
+          }
         }
       });
+  }
+
+  clear(): void {
+    this.genresForm.reset();
+    this.reset.emit();
   }
 
 }

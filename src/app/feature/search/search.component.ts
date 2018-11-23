@@ -63,4 +63,9 @@ export class SearchComponent implements OnInit {
       this.autoCmpliteTrigger.closePanel();
     }
   }
+
+  clear(): void {
+    this.searchFormControl.reset();
+    this.reset.emit();
+  }
 }
