@@ -1,64 +1,23 @@
-# Betsson Group: Movies Application
-**Version: 1.2**
-## Scenario:
+# Author: Maksim Kilovatiy
+**Version: 1.0**
 
-You have a great idea for a new movies collection application. Your new site will be based on angular application which it will contain the below features:
+## Description:
+Simple Cinema Application. You can filter movies by a name or you can use a genre filter.
+Clicking on the movie will provide you on to the movie details page. In order to back to the movies list you have to click on to the browser back button
 
-### Application should contain the below features:
+In order to start application
+1. npm install
+2. npm start
 
-- **Movies List**
-  - List Movies.
-  - Search.
-  - Clicking on a particular movie will redirect you to the selected &#39;movie detail&#39; page.
-- **Movie detail**
-  - Show selected movie detail information.
-  - Navigate back to &#39;movie list&#39;.
+In order to test
+1. ng test:sm 
 
-Pages should have proper urls and navigation should work as expected:
-  * using the back and forward button of the browser should take to the correct page
-  * reloading the current page should work as expected
+## Build
 
-#### Technologies required
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-- [Angular](https://angular.io/) (2 or higher)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Rxjs](https://github.com/ReactiveX/rxjs)
-- [Sass](http://sass-lang.com/)
+## Running unit tests
 
-You may use any 3rd party libraries which can facilitate your development.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-#### Extra Credit
 
-- Filter by Genre.
-- Apply [Redux](http://redux.js.org/) application state management to your application. You may use any 3rd party libraries which can facilitate your development.
-- Unit tests.
-- Polished design.
-- Responsive design.
-- Animations.
-
-If you get the demo in good shape and have extra time, add your own flair and features.
-
-#### Content
-
-- Together with this readme file, you will find ` **content** ` folder which contains helpful content for your application:
-  - Movies mock data.
-  - Movies cover images.
-  - Basic movies model.
-- Feel free to modify movies content.
-- Feel free to modify movies model file.
-
-#### How to start?
-
-We encourage you to start the project however it suits you best.
-
-Optionally you can use the Angular QuickStart Source that we included (`quickstart` folder).
-
-#### Deliverable
-
-- Provide a working application.
-- Provide source code in a public Git, Stash or Bitbucket repository.
-- Provide markdown readme file.
-  - General information about the app.
-  - Provide steps how to build/launch your application.
-
-Goodluck!
