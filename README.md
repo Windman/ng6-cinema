@@ -1,14 +1,16 @@
-# Ng6Movies
+# Author: Maksim Kilovatiy
+**Version: 1.0**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
+## Description:
+Simple Cinema Application. You can filter movies by a name or you can use a genre filter.
+Clicking on the movie will provide you on to the movie details page. In order to back to the movies list you have to click on to the browser back button
 
-## Development server
+In order to start application
+1. npm install
+2. npm start
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+In order to test
+1. ng test:sm 
 
 ## Build
 
@@ -18,10 +20,3 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
