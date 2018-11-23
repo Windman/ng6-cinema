@@ -1,6 +1,13 @@
-<p>
-  {{movie.key}}
-</p>
-<p>
-  {{movie.description}}
-</p>
+<div class="movie-details">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="movie-name">{{movie.name}}</mat-card-title>
+      <mat-card-subtitle>{{movie.description}}</mat-card-subtitle>
+      <mat-card-subtitle><b>Length:</b> {{movie.length}}</mat-card-subtitle>
+      <mat-card-subtitle><b>Rate:</b> {{movie.rate}} Length: {{movie.length}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image
+         src="assets/images/movie-covers/{{movie.img}}"
+         alt="Photo of a {{movie.key}}">
+  </mat-card>
+</div>
