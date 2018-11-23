@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --aot --base-href /dist/",
+    "build": "ng build --aot --base-href /dist/ng6-movies/",
     "build:aot": "ng build --aot ",
     "test": "ng test",
     "test:sm": "ng test --sourceMap=true",
