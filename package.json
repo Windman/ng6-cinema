@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "build:aot": "ng build --aot --base-href /dist/ng6-movies/",
     "start": "ng serve",
-    "build": "ng build --aot --base-href /dist/ng6-movies/",
-    "build:aot": "ng build --aot ",
+    "build": "ng build",
     "test": "ng test",
     "test:sm": "ng test --sourceMap=true",
     "lint": "ng lint",
