@@ -9,7 +9,7 @@ import { BaseFilterModel } from 'src/app/feature/filters/base-filter.model';
 @Component({
   selector: 'app-filters-host',
   templateUrl: './filters-host.component.html',
-  styles: ['./filters-host.component.scss']
+  styleUrls: ['./filters-host.component.scss']
 })
 export class FiltersHostComponent implements OnInit {
   @Input() movies: Movie[];
