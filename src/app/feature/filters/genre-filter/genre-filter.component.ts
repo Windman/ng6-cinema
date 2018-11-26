@@ -24,10 +24,14 @@ export class GenreFilterComponent implements OnInit {
       .subscribe(state => {
         const movies = state.container.movies;
         this.genres = movies
-        .map(movie => movie.genres)
-        .reduce((p, k) => {
-          return p.concat(k);
-        });
+          .map(movie => movie.genres)
+          .reduce((p, k) => {
+            const newgenre = p.concat.apply(p, k);
+            const seen = {};
+            return newgenre.filter(item => {
+              return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+            });
+          });
       });
 
     this.genresForm.valueChanges

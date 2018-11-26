@@ -59,8 +59,6 @@ export class SearchComponent implements OnInit {
   search(criteria: string): void {
     if (criteria) {
       this.complete.emit({ name: 'byname', criteria: criteria });
-
-      this.complete.emit();
       this.autoCmpliteTrigger.closePanel();
     }
   }
