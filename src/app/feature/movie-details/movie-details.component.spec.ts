@@ -1,4 +1,4 @@
-import { Movie } from './../../model/movie';
+import { Movie } from '../../model/movie';
 import { ActivatedRoute } from '@angular/router';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 

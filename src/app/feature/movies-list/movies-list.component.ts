@@ -1,3 +1,4 @@
+import { MoviesStore } from '../../model/movies-state/movies-store';
 import { MatSnackBar } from '@angular/material';
 import { Component, Input, OnInit, ViewChild, AfterViewInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,12 +13,20 @@ import { Movie } from '../../model/movie';
 export class MoviesListComponent implements OnInit, OnChanges {
   @Input() movies: Movie[];
 
-  constructor(public router: Router, private snackbarr: MatSnackBar) {
+  constructor(public router: Router,
+    private snackbarr: MatSnackBar,
+    private moviesStore: MoviesStore) {
 
   }
 
   ngOnInit() {
+    this.moviesStore.observe()
+      .subscribe(state => {
+        this.movies = state.container.movies;
+        this.showMoviesLength(this.movies.length);
+      });
 
+    this.showMoviesLength(this.movies.length);
   }
 
   ngOnChanges() {

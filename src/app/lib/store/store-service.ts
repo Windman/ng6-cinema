@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { StoreEvent } from './store-event';
-import { BehaviorSubject } from "../../../../node_modules/rxjs/internal/BehaviorSubject";
-import { Observable } from "../../../../node_modules/rxjs/internal/Observable";
-import { distinctUntilChanged } from "../../../../node_modules/rxjs/operators";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+import { Observable } from "rxjs/internal/Observable";
+import { distinctUntilChanged } from "rxjs/operators";
 
 @Injectable()
 export class StoreService<T> {

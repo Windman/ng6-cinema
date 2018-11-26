@@ -1,7 +1,8 @@
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Movie } from 'src/app/model/movie';
+import { Movie } from '../../../model/movie';
 import { GenreFilterModel } from './model/genre-filter-model';
+import { MoviesStore } from '../../../model/movies-state/movies-store';
 
 @Component({
   selector: 'app-genre-filter',
@@ -9,18 +10,25 @@ import { GenreFilterModel } from './model/genre-filter-model';
   styleUrls: ['./genre-filter.component.scss']
 })
 export class GenreFilterComponent implements OnInit {
-  @Input() genres: string[];
-  @Input() movies: Movie[];
-  @Output() complete = new EventEmitter<Movie[]>();
+  @Output() complete = new EventEmitter<any>();
   @Output() reset = new EventEmitter();
 
   genresForm = new FormControl();
   model: GenreFilterModel;
+  genres: string[];
 
-  constructor() { }
+  constructor(private moviesStore: MoviesStore) { }
 
   ngOnInit() {
-    this.model = new GenreFilterModel(this.movies);
+    this.moviesStore.observe()
+      .subscribe(state => {
+        const movies = state.container.movies;
+        this.genres = movies
+        .map(movie => movie.genres)
+        .reduce((p, k) => {
+          return p.concat(k);
+        });
+      });
 
     this.genresForm.valueChanges
       .subscribe((genre: any) => {
@@ -28,7 +36,7 @@ export class GenreFilterComponent implements OnInit {
           if (genre.length === 0) {
             this.reset.emit();
           } else {
-            this.complete.emit(this.model.applyFilter(genre));
+            this.complete.emit({ name: 'bygenre', criteria: genre });
           }
         }
       });
@@ -38,5 +46,4 @@ export class GenreFilterComponent implements OnInit {
     this.genresForm.reset();
     this.reset.emit();
   }
-
 }

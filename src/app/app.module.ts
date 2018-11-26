@@ -13,10 +13,11 @@ import { MovieDetailsComponent } from './feature/movie-details/movie-details.com
 import { AppRoutingModule } from './app.routing.module';
 import { BaseComponent } from './base.component';
 import { MoviesService } from './services/movies-service';
-import { SearchComponent } from './feature/search/search.component';
+import { SearchComponent } from './feature/filters/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CinemaComponent } from './feature/cinema/cinema.component';
-import { GenreFilterComponent } from './feature/genre-filter/genre-filter.component';
+import { GenreFilterComponent } from './feature/filters/genre-filter/genre-filter.component';
+import { FiltersHostComponent } from './feature/filters/filters-host/filters-host.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { GenreFilterComponent } from './feature/genre-filter/genre-filter.compon
     MovieDetailsComponent,
     SearchComponent,
     CinemaComponent,
-    GenreFilterComponent
+    GenreFilterComponent,
+    FiltersHostComponent
   ],
   imports: [
     BrowserModule,

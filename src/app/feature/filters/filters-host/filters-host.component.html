@@ -1,0 +1,9 @@
+<div class="cinema-filter">
+  <app-search class="search"
+              (complete)="onSearchComplete($event)"
+              (reset)="onResetFilter()">
+  </app-search>
+  <app-genre-filter (complete)="onSearchComplete($event)"
+                    (reset)="onResetFilter()">
+  </app-genre-filter>
+</div>

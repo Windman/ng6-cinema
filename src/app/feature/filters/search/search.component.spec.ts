@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
-import { CustomMaterialModule } from '../../lib/material/custom-material.module';
+import { CustomMaterialModule } from '../../../lib/material/custom-material.module';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;

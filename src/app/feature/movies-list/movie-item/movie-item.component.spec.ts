@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, By } from '@angular/platform-browser';
-import { CustomMaterialModule } from './../../../lib/material/custom-material.module';
+import { CustomMaterialModule } from '../../../lib/material/custom-material.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieItemComponent } from './movie-item.component';

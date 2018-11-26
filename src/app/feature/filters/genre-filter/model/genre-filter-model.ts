@@ -1,12 +1,13 @@
-import { Movie } from "../../../model/movie";
+import { Movie } from "../../../../model/movie";
+import { BaseFilterModel } from "src/app/feature/filters/base-filter.model";
 
-export class GenreFilterModel {
+export class GenreFilterModel implements BaseFilterModel {
 
   constructor(private movies: Movie[]) {
 
   }
 
-  applyFilter(genres: string[]): Movie[] {
+  apply(genres: string[]): Movie[] {
     const lookup = {};
     genres.forEach(g => {
       lookup[g] = 1;

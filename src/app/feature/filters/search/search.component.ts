@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 import { SearchModel } from './model/search-model';
-import { Movie } from '../../model/movie';
-import { MoviesStore } from 'src/app/model/movies-state/movies-store';
+import { Movie } from '../../../model/movie';
+import { MoviesStore } from '../../../model/movies-state/movies-store';
 
 @Component({
   selector: 'app-search',
@@ -12,8 +12,7 @@ import { MoviesStore } from 'src/app/model/movies-state/movies-store';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  @Input() movies: Movie[];
-  @Output() complete = new EventEmitter<Movie[]>();
+  @Output() complete = new EventEmitter<any>();
   @Output() reset = new EventEmitter();
 
   @ViewChild(MatAutocomplete)
@@ -25,7 +24,7 @@ export class SearchComponent implements OnInit {
   searchFormControl: FormControl = new FormControl();
   names: string[];
   model: SearchModel;
-
+  movies: Movie[];
 
   constructor(private moviesStore: MoviesStore) {
 
@@ -35,9 +34,7 @@ export class SearchComponent implements OnInit {
     this.moviesStore.observe()
       .subscribe(state => {
         this.movies = state.container.movies;
-
-        this.model = new SearchModel(this.movies);
-        this.names = this.model.names;
+        this.names = this.getNames(this.movies);
       });
 
     this.searchFormControl.valueChanges
@@ -45,9 +42,9 @@ export class SearchComponent implements OnInit {
         startWith('')
       ).subscribe(criteria => {
         if (criteria) {
-          this.names = this.model.filterNames(criteria);
+          this.names = this.filterNames(criteria, this.movies);
         } else {
-          this.names = this.model.names.slice();
+          this.names = this.getNames(this.movies).slice();
           this.reset.emit();
         }
       });
@@ -61,13 +58,23 @@ export class SearchComponent implements OnInit {
 
   search(criteria: string): void {
     if (criteria) {
+      this.complete.emit({ name: 'byname', criteria: criteria });
 
-      this.complete.emit(
-        this.model.filterMovies(criteria)
-      );
-
+      this.complete.emit();
       this.autoCmpliteTrigger.closePanel();
     }
+  }
+
+  filterNames(criteria: string, movies: Movie[]) {
+    return this.getNames(movies).filter(name => {
+      if (name.toLowerCase().indexOf(criteria.toLowerCase()) > -1) {
+        return name;
+      }
+    });
+  }
+
+  getNames(movies: Movie[]): string[] {
+    return movies ? movies.map(x => x.key) : [];
   }
 
   clear(): void {
