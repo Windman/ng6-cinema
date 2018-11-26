@@ -5,6 +5,7 @@ import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 import { SearchModel } from './model/search-model';
 import { Movie } from '../../../model/movie';
 import { MoviesStore } from '../../../model/movies-state/movies-store';
+import { CriteriaType } from 'src/app/feature/filters/filter-types';
 
 @Component({
   selector: 'app-search',
@@ -58,7 +59,9 @@ export class SearchComponent implements OnInit {
 
   search(criteria: string): void {
     if (criteria) {
-      this.complete.emit({ name: 'byname', criteria: criteria });
+      const value: CriteriaType = { name: 'byname', criteria: criteria };
+      this.complete.emit(value);
+
       this.autoCmpliteTrigger.closePanel();
     }
   }

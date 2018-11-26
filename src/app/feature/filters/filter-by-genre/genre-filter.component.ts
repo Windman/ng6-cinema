@@ -1,8 +1,8 @@
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Movie } from '../../../model/movie';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { GenreFilterModel } from './model/genre-filter-model';
 import { MoviesStore } from '../../../model/movies-state/movies-store';
+import { CriteriaType } from 'src/app/feature/filters/filter-types';
 
 @Component({
   selector: 'app-genre-filter',
@@ -40,7 +40,8 @@ export class GenreFilterComponent implements OnInit {
           if (genre.length === 0) {
             this.reset.emit();
           } else {
-            this.complete.emit({ name: 'bygenre', criteria: genre });
+            const criteria: CriteriaType = { name: 'bygenre', criteria: genre };
+            this.complete.emit(criteria);
           }
         }
       });

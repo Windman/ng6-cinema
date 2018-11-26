@@ -1,5 +1,5 @@
 import { Movie } from '../../../../model/movie';
-import { BaseFilterModel } from 'src/app/feature/filters/base-filter.model';
+import { BaseFilterModel } from '../../base-filter.model';
 
 export class SearchModel implements BaseFilterModel {
 

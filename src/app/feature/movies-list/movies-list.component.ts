@@ -39,7 +39,7 @@ export class MoviesListComponent implements OnInit, OnChanges {
 
   private showMoviesLength(length: number): void {
     setTimeout(() => {
-      this.snackbarr.open(`Showing ${length} movies`, ' DISMISS ', { duration: 1500 });
+      this.snackbarr.open(`Showing ${length} movies`, ' DISMISS ', { duration: 3000 });
     }, 200);
   }
 }

@@ -1,10 +1,9 @@
-import { Movie } from 'src/app/model/movie';
+import { Movie } from '../../../model/movie';
 import { Component, OnInit, Input } from '@angular/core';
-import { MoviesStore } from 'src/app/model/movies-state/movies-store';
-import { MoviesSuccessEvent, MoviesResetEvent } from 'src/app/model/movies-state/movies-events';
-import { GenreFilterModel } from 'src/app/feature/filters/genre-filter/model/genre-filter-model';
-import { SearchModel } from 'src/app/feature/filters/search/model/search-model';
-import { BaseFilterModel } from 'src/app/feature/filters/base-filter.model';
+import { MoviesStore } from '../../../model/movies-state/movies-store';
+import { MoviesSuccessEvent, MoviesResetEvent } from '../../../model/movies-state/movies-events';
+import { GenreFilterModel } from '../filter-by-genre/model/genre-filter-model';
+import { SearchModel } from '../filter-by-name/model/search-model';
 
 @Component({
   selector: 'app-filters-host',

@@ -7,7 +7,7 @@ Clicking on the movie will provide you on to the movie details page. In order to
 
 In order to start application
 1. npm install
-2. npm start
+2. npm run serve
 
 In order to test
 1. ng test:sm 
