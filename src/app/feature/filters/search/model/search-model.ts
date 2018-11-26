@@ -8,6 +8,9 @@ export class SearchModel implements BaseFilterModel {
   }
 
   apply(criteria: string): Movie[] {
+    if (typeof criteria !== 'string') {
+      return [];
+    }
     return this.movies.filter(movie => new RegExp(criteria, 'gi').test(movie.key));
   }
 }

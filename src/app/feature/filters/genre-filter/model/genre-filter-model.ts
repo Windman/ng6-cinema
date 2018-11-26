@@ -8,6 +8,10 @@ export class GenreFilterModel implements BaseFilterModel {
   }
 
   apply(genres: string[]): Movie[] {
+    if (typeof genres === 'string') {
+      return [];
+    }
+
     const lookup = {};
     genres.forEach(g => {
       lookup[g] = 1;

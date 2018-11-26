@@ -14,23 +14,25 @@ import { BaseFilterModel } from 'src/app/feature/filters/base-filter.model';
 export class FiltersHostComponent implements OnInit {
   @Input() movies: Movie[];
 
-  filters = {};
+  filters = [];
 
   constructor(private moviesStore: MoviesStore) { }
 
   ngOnInit() {
     this.moviesStore.dispatch(new MoviesSuccessEvent(this.movies));
 
-    this.filters["bygenre"] = new GenreFilterModel(this.movies);
-    this.filters["byname"] = new SearchModel(this.movies);
+    this.filters.push(new GenreFilterModel(this.movies));
+    this.filters.push(new SearchModel(this.movies));
   }
 
   onSearchComplete(event: any): void {
-    let res = [];
-    if (this.filters[event.name]) {
-      res = res.concat.apply(res, this.filters[event.name].apply(event.criteria));
-    }
-    this.moviesStore.dispatch(new MoviesSuccessEvent(res));
+    let items = [];
+
+    this.filters.forEach(f => {
+      items = [].concat.apply(items, f.apply(event.criteria));
+    });
+
+    this.moviesStore.dispatch(new MoviesSuccessEvent(items));
   }
 
   onResetFilter(): void {

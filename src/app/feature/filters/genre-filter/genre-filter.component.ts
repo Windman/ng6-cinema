@@ -30,7 +30,7 @@ export class GenreFilterComponent implements OnInit {
             const seen = {};
             return newgenre.filter(item => {
               return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-            });
+            }, []);
           });
       });
 
