@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, Output, Input, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import { Component, OnInit, ViewChild, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 import { SearchModel } from './model/search-model';
 import { Movie } from '../../model/movie';
+import { MoviesStore } from 'src/app/model/movies-state/movies-store';
 
 @Component({
   selector: 'app-search',
@@ -26,13 +27,19 @@ export class SearchComponent implements OnInit {
   names: string[];
   model: SearchModel;
 
-  constructor() {
+
+  constructor(private moviesStore: MoviesStore) {
 
   }
 
   ngOnInit() {
-    this.model = new SearchModel(this.movies);
-    this.names = this.model.names;
+    this.moviesStore.observe()
+      .subscribe(state => {
+        this.movies = state.container.movies;
+
+        this.model = new SearchModel(this.movies);
+        this.names = this.model.names;
+      });
 
     this.searchFormControl.valueChanges
       .pipe(

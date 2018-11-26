@@ -1,3 +1,4 @@
+import { MoviesStore } from './model/movies-state/movies-store';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,7 +37,7 @@ import { GenreFilterComponent } from './feature/genre-filter/genre-filter.compon
     CustomMaterialModule,
     AppRoutingModule
   ],
-  providers: [MoviesService],
+  providers: [MoviesService, MoviesStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

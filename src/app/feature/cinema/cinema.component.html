@@ -3,13 +3,12 @@
     <app-search class="search"
                 [movies]="movies"
                 (complete)="onSearchComplete($event)"
-                (reset)="onSearchReset()">
+                (reset)="onResetFilter()">
     </app-search>
-    <app-genre-filter [genres]="genres"
-                      [movies]="movies"
+    <app-genre-filter [movies]="movies"
+                      [genres]="genres"
                       (complete)="onSearchComplete($event)"
-                      (reset)="onSearchReset()"></app-genre-filter>
+                      (reset)="onResetFilter()"></app-genre-filter>
   </div>
-  <app-movies-list class="movies-list"
-                   [movies]="movies"></app-movies-list>
+  <app-movies-list [movies]="movies" class="movies-list"></app-movies-list>
 </div>
