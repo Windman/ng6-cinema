@@ -15,11 +15,12 @@ export class GenreFilterComponent implements OnInit {
   @Output() reset = new EventEmitter();
 
   genresForm = new FormControl();
+  model: GenreFilterModel;
 
   constructor() { }
 
   ngOnInit() {
-    const model = new GenreFilterModel(this.movies);
+    this.model = new GenreFilterModel(this.movies);
 
     this.genresForm.valueChanges
       .subscribe((genre: any) => {
@@ -27,7 +28,7 @@ export class GenreFilterComponent implements OnInit {
           if (genre.length === 0) {
             this.reset.emit();
           } else {
-            this.complete.emit(model.applyFilter(genre));
+            this.complete.emit(this.model.applyFilter(genre));
           }
         }
       });
