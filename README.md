@@ -10,7 +10,7 @@ In order to start application
 2. npm run serve
 
 In order to test
-1. ng test:sm 
+1. npm run test:sm 
 
 ## Build
 
