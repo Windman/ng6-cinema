@@ -12,8 +12,9 @@ import { GENRE_TYPE } from '../../../model/movie'
 export class FiltersHostComponent implements OnInit {
   @Input() movies: Movie[];
   @ViewChildren('filter') filtersComponents: any;
-  
+
   genres: string[] = [];
+  firstFilterName = '';
 
   constructor(private moviesStore: MoviesStore) { }
 
@@ -26,16 +27,22 @@ export class FiltersHostComponent implements OnInit {
   }
 
   onSearchComplete(event: any): void {
-    console.log(this.filtersComponents);
+    if (this.firstFilterName === '') {
+      this.firstFilterName = event.name;
+    }
+
     let items = [];
 
-    const firstFilter = this.filtersComponents.find(c => c.name === event.name);
+    const firstFilter = this.filtersComponents.find(c => c.name === this.firstFilterName);
     if (firstFilter) {
-      items = firstFilter.model.apply(this.movies, event.criteria);
+      items = firstFilter.model.apply(this.movies, firstFilter.criteria);
       this.filtersComponents
-      .filter(fc => fc.name !== event.name)
-      .map(cmp => { 
-        items = [].concat.apply(items, cmp.model.apply(cmp.criteria));
+      .filter(fc => fc.name !== this.firstFilterName)
+      .map(cmp => {
+        const filterResult = cmp.model.apply(items, cmp.criteria);
+        if (filterResult.length > 0) {
+          items = filterResult;
+        }
       });
     }
 
@@ -43,6 +50,7 @@ export class FiltersHostComponent implements OnInit {
   }
 
   onResetFilter(): void {
+    this.firstFilterName = '';
     this.moviesStore.dispatch(new MoviesResetEvent(this.movies));
   }
 

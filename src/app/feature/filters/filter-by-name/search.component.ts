@@ -26,7 +26,7 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
   names: string[];
   model: SearchModel;
   movies: Movie[];
-  
+
   constructor(private moviesStore: MoviesStore) {
     super();
     this.name = 'byname';
@@ -46,8 +46,10 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
         startWith('')
       ).subscribe(criteria => {
         if (criteria) {
+          this.criteria = criteria;
           this.names = this.filterNames(criteria, this.movies);
         } else {
+          this.criteria = '';
           this.names = this.getNames(this.movies).slice();
           this.reset.emit();
         }
@@ -80,6 +82,7 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
   }
 
   clear(): void {
+    this.criteria = '';
     this.searchFormControl.reset();
     this.reset.emit();
   }

@@ -29,7 +29,8 @@ export class GenreFilterComponent extends BaseFilterComponent
 
     this.moviesStore.observe().subscribe(state => {
       const movies = state.container.movies;
-      this.genres = movies
+      if (movies.length > 0) {
+        this.genres = movies
         .map(movie => movie.genres)
         .reduce((p, k) => {
           const newgenre = p.concat.apply(p, k);
@@ -38,6 +39,7 @@ export class GenreFilterComponent extends BaseFilterComponent
             return seen.hasOwnProperty(item) ? false : (seen[item] = true);
           }, []);
         });
+      }
     });
 
     this.genresForm.valueChanges.subscribe((genre: any) => {
