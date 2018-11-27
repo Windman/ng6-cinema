@@ -1,3 +1,6 @@
+import { of } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
+import { MoviesStore } from './../../model/movies-state/movies-store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
@@ -33,6 +36,8 @@ describe('MoviesListComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
 
   const routerMock = jasmine.createSpyObj('Router', ['navigateByUrl', 'navigate']);
+  const moviesStore = jasmine.createSpyObj('MoviesStore', ['observe', 'dispatch']);
+  const snakBarr = jasmine.createSpyObj('MatSnackBar', ['open']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -47,13 +52,17 @@ describe('MoviesListComponent', () => {
         CustomMaterialModule
       ],
       providers: [
-        { provide: Router, useValue: routerMock }
+        { provide: Router, useValue: routerMock },
+        { provide: MoviesStore, useValue: moviesStore },
+        { provide: MatSnackBar, useValue: snakBarr }
       ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    const storeObserveSpy = moviesStore.observe.and.returnValue(of(null));
+
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
     component.movies = Object.assign([], movies);

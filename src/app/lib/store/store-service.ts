@@ -14,10 +14,6 @@ export class StoreService<T> {
 		this.store$ = this.store.asObservable().pipe(distinctUntilChanged());
 	}
 
-  getState(): T {
-    return this.store.getValue();
-  }
-
 	observe(): Observable<T> {
 		return this.store$;
 	}

@@ -1,6 +1,5 @@
 import { FormControl } from "@angular/forms";
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
-import { Movie } from "../../../model/movie";
 import { GenreFilterModel } from "./model/genre-filter-model";
 import { MoviesStore } from "../../../model/movies-state/movies-store";
 import { BaseFilterComponent } from "../base-filter.component";

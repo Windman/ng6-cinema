@@ -1,3 +1,5 @@
+import { CustomMaterialModule } from './../../lib/material/custom-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Movie } from '../../model/movie';
 import { ActivatedRoute } from '@angular/router';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -16,6 +18,10 @@ describe('MovieDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MovieDetailsComponent ],
+      imports: [
+        BrowserAnimationsModule,
+        CustomMaterialModule
+      ],
       providers: [
         { provide: MoviesService, useValue: movieServiceMock },
         { provide: ActivatedRoute, useValue: activatedRoute }
