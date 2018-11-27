@@ -1,10 +1,8 @@
 import { Movie } from 'src/app/model/movie';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChildren } from '@angular/core';
 import { MoviesStore } from 'src/app/model/movies-state/movies-store';
 import { MoviesSuccessEvent, MoviesResetEvent } from 'src/app/model/movies-state/movies-events';
-import { GenreFilterModel } from 'src/app/feature/filters/genre-filter/model/genre-filter-model';
-import { SearchModel } from 'src/app/feature/filters/search/model/search-model';
-import { BaseFilterModel } from 'src/app/feature/filters/base-filter.model';
+import { GENRE_TYPE } from '../../../model/movie'
 
 @Component({
   selector: 'app-filters-host',
@@ -13,24 +11,33 @@ import { BaseFilterModel } from 'src/app/feature/filters/base-filter.model';
 })
 export class FiltersHostComponent implements OnInit {
   @Input() movies: Movie[];
-
-  filters = [];
+  @ViewChildren('filter') filtersComponents: any;
+  
+  genres: string[] = [];
 
   constructor(private moviesStore: MoviesStore) { }
 
   ngOnInit() {
-    this.moviesStore.dispatch(new MoviesSuccessEvent(this.movies));
+    for (const key in GENRE_TYPE) {
+      this.genres.push(key);
+    }
 
-    this.filters.push(new GenreFilterModel(this.movies));
-    this.filters.push(new SearchModel(this.movies));
+    this.moviesStore.dispatch(new MoviesSuccessEvent(this.movies));
   }
 
   onSearchComplete(event: any): void {
+    console.log(this.filtersComponents);
     let items = [];
 
-    this.filters.forEach(f => {
-      items = [].concat.apply(items, f.apply(event.criteria));
-    });
+    const firstFilter = this.filtersComponents.find(c => c.name === event.name);
+    if (firstFilter) {
+      items = firstFilter.model.apply(this.movies, event.criteria);
+      this.filtersComponents
+      .filter(fc => fc.name !== event.name)
+      .map(cmp => { 
+        items = [].concat.apply(items, cmp.model.apply(cmp.criteria));
+      });
+    }
 
     this.moviesStore.dispatch(new MoviesSuccessEvent(items));
   }

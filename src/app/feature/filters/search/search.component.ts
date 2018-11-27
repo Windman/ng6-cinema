@@ -5,13 +5,14 @@ import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 import { SearchModel } from './model/search-model';
 import { Movie } from '../../../model/movie';
 import { MoviesStore } from '../../../model/movies-state/movies-store';
+import { BaseFilterComponent } from '../base-filter.component';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent extends BaseFilterComponent  implements OnInit {
   @Output() complete = new EventEmitter<any>();
   @Output() reset = new EventEmitter();
 
@@ -25,12 +26,15 @@ export class SearchComponent implements OnInit {
   names: string[];
   model: SearchModel;
   movies: Movie[];
-
+  
   constructor(private moviesStore: MoviesStore) {
-
+    super();
+    this.name = 'byname';
   }
 
   ngOnInit() {
+    this.model = new SearchModel();
+
     this.moviesStore.observe()
       .subscribe(state => {
         this.movies = state.container.movies;

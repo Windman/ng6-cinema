@@ -1,3 +1,5 @@
+import { Movie } from "src/app/model/movie";
+
 export interface BaseFilterModel {
-  apply(value: any): any[];
+  apply(items: Movie[], criteria: any): any[];
 }
