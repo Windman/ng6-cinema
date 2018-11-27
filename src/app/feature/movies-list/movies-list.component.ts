@@ -4,6 +4,7 @@ import { Component, Input, OnInit, ViewChild, AfterViewInit, OnChanges } from '@
 import { Router } from '@angular/router';
 
 import { Movie } from '../../model/movie';
+import { skipWhile } from '../../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-movies-list',
@@ -16,11 +17,11 @@ export class MoviesListComponent implements OnInit, OnChanges {
   constructor(public router: Router,
     private snackbarr: MatSnackBar,
     private moviesStore: MoviesStore) {
-
   }
 
   ngOnInit() {
     this.moviesStore.observe()
+      .pipe(skipWhile(x => !x.container))
       .subscribe(state => {
         this.movies = state.container.movies;
         this.showMoviesLength(this.movies.length);

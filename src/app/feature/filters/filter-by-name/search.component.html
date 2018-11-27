@@ -2,6 +2,7 @@
                 [floatLabel]="'never'">
   <mat-icon matPrefix>search</mat-icon>
   <input #nameSearch
+         name="searchbyaname"
          matInput
          placeholder="filter movies by a name"
          [formControl]="searchFormControl"
@@ -15,8 +16,10 @@
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
-<mat-autocomplete #auto="matAutocomplete">
-  <cdk-virtual-scroll-viewport itemSize="50" minBufferPx="200" maxBufferPx="400"
+<mat-autocomplete class="search-autocomplete" #auto="matAutocomplete">
+  <cdk-virtual-scroll-viewport itemSize="50"
+                               minBufferPx="200"
+                               maxBufferPx="400"
                                class="search-options-viewport">
     <mat-option class="option-item"
                 *cdkVirtualFor="let option of names"

@@ -8,7 +8,7 @@ export class GenreFilterModel implements BaseFilterModel {
   }
 
   apply(movies: Movie[], genres: string[]): Movie[] {
-    if (!genres || typeof genres === 'string') {
+    if (!genres || typeof genres === 'string' || genres.length === 0) {
       return [];
     }
 

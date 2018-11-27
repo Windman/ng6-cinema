@@ -2,6 +2,8 @@ import { of } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { click } from 'testing/click.helper';
 
 import { GenreFilterComponent } from './genre-filter.component';
 import { CustomMaterialModule } from 'src/app/lib/material/custom-material.module';
@@ -40,4 +42,13 @@ describe('GenreFilterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should reset criteria if clear bytton clicked', () => {
+    fixture.componentInstance.criteria = '123456';
+    const genresClear = fixture.debugElement.query(By.css('.genres-clear-button')).nativeElement;
+    click(genresClear);
+
+    expect(fixture.componentInstance.criteria).toBe('');
+  });
+
 });

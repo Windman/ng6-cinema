@@ -1,3 +1,4 @@
+import { skipWhile } from 'rxjs/operators';
 import { FormControl } from "@angular/forms";
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { GenreFilterModel } from "./model/genre-filter-model";
@@ -26,7 +27,9 @@ export class GenreFilterComponent extends BaseFilterComponent
   ngOnInit() {
     this.model = new GenreFilterModel();
 
-    this.moviesStore.observe().subscribe(state => {
+    this.moviesStore.observe()
+    .pipe(skipWhile(x => !x.container))
+    .subscribe(state => {
       const movies = state.container.movies;
       if (movies.length > 0) {
         this.genres = movies

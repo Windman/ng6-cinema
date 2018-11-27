@@ -61,7 +61,7 @@ describe('MoviesListComponent', () => {
   }));
 
   beforeEach(() => {
-    const storeObserveSpy = moviesStore.observe.and.returnValue(of(null));
+    const storeObserveSpy = moviesStore.observe.and.returnValue(of([]));
 
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;

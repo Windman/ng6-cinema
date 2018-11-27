@@ -1,14 +1,15 @@
 <mat-form-field>
     <mat-select placeholder="filter movies by a genre" [formControl]="genresForm" multiple>
-      <mat-select-trigger>
+      <mat-select-trigger class="genre-select-trigger">
         {{genresForm.value ? genresForm.value[0] : ''}}
         <span *ngIf="genresForm.value?.length > 1" class="example-additional-selection">
           (+{{genresForm.value.length - 1}} {{genresForm.value?.length === 2 ? 'other' : 'others'}})
         </span>
       </mat-select-trigger>
-      <mat-option *ngFor="let genre of genres" [value]="genre">{{genre}}</mat-option>
+      <mat-option class="option-{{genre}}" *ngFor="let genre of genres" [value]="genre">{{genre}}</mat-option>
     </mat-select>
-    <button mat-button
+    <button class="genres-clear-button"
+          mat-button
           matSuffix
           mat-icon-button
           aria-label="Clear"

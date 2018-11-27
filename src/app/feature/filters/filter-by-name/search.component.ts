@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { startWith } from 'rxjs/operators';
+import { startWith, skipWhile } from 'rxjs/operators';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 import { SearchModel } from './model/search-model';
 import { Movie } from '../../../model/movie';
@@ -36,6 +36,7 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
     this.model = new SearchModel();
 
     this.moviesStore.observe()
+      .pipe(skipWhile(x => !x.container))
       .subscribe(state => {
         this.movies = state.container.movies;
         this.names = this.getNames(this.movies);

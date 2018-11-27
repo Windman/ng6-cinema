@@ -1,13 +1,14 @@
 <div class="cinema-filter">
   <app-search
     #filter
-    class="search"
+    class="by-a-name"
     (complete)="onSearchComplete($event)"
     (reset)="onResetFilter()"
   >
   </app-search>
   <app-genre-filter
     #filter
+    class="by-a-genre"
     [genres]="genres"
     (complete)="onSearchComplete($event)"
     (reset)="onResetFilter()"
