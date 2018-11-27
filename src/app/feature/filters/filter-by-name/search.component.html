@@ -3,7 +3,7 @@
   <mat-icon matPrefix>search</mat-icon>
   <input #nameSearch
          matInput
-         placeholder="filter movie by a name"
+         placeholder="filter movies by a name"
          [formControl]="searchFormControl"
          (keyup.enter)="search(nameSearch.value)"
          [matAutocomplete]="auto">
