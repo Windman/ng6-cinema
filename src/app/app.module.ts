@@ -1,3 +1,4 @@
+import { BaseFilterComponent } from './feature/filters/base-filter.component';
 import { MoviesStore } from './model/movies-state/movies-store';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +30,8 @@ import { FiltersHostComponent } from './feature/filters/filters-host/filters-hos
     SearchComponent,
     CinemaComponent,
     GenreFilterComponent,
-    FiltersHostComponent
+    FiltersHostComponent,
+    BaseFilterComponent
   ],
   imports: [
     BrowserModule,
