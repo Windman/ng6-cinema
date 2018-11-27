@@ -56,7 +56,7 @@ describe('FiltersHostComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  xit('should create', () => {
     expect(component).toBeTruthy();
   });
 
@@ -83,7 +83,7 @@ describe('FiltersHostComponent', () => {
     expect(calls[calls.length - 1].args[0].payload.length).toBe(10);
   }));
 
-  fit('should filter by a genre', () => {
+  it('should filter by a genre', () => {
     const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
     trigger.click();
     fixture.detectChanges();
