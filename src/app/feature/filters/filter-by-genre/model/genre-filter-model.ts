@@ -3,12 +3,12 @@ import { BaseFilterModel } from "../../base-filter.model";
 
 export class GenreFilterModel implements BaseFilterModel {
 
-  constructor(private movies: Movie[]) {
+  constructor() {
 
   }
 
-  apply(genres: string[]): Movie[] {
-    if (typeof genres === 'string') {
+  apply(movies: Movie[], genres: string[]): Movie[] {
+    if (!genres || typeof genres === 'string') {
       return [];
     }
 
@@ -16,7 +16,7 @@ export class GenreFilterModel implements BaseFilterModel {
     genres.forEach(g => {
       lookup[g] = 1;
     })
-    return this.movies.filter(m => {
+    return movies.filter(m => {
       const match = m.genres.filter(g => {
         return lookup[g] ? true : false;
         }).length === genres.length; //strict //not > 0

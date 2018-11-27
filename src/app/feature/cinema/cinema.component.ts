@@ -3,7 +3,6 @@ import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from '../../base.component';
 import { MoviesService } from '../../services/movies-service';
 import { Movie } from '../../model/movie';
-import { GENRE_TYPE } from '../../model/movie';
 
 @Component({
   selector: 'app-cinema',
@@ -12,8 +11,7 @@ import { GENRE_TYPE } from '../../model/movie';
 })
 export class CinemaComponent extends BaseComponent implements OnInit {
   movies: Movie[];
-  genres: string[] = [];
-
+  
   constructor(private moviesService: MoviesService) {
     super();
   }
@@ -27,9 +25,5 @@ export class CinemaComponent extends BaseComponent implements OnInit {
     });
 
     this.moviesService.getMovies();
-
-    for (const key in GENRE_TYPE) {
-      this.genres.push(key);
-    }
   }
 }

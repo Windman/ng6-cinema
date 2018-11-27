@@ -3,14 +3,14 @@ import { BaseFilterModel } from '../../base-filter.model';
 
 export class SearchModel implements BaseFilterModel {
 
-  constructor(private movies: Movie[] = []) {
+  constructor() {
 
   }
 
-  apply(criteria: string): Movie[] {
-    if (typeof criteria !== 'string') {
+  apply(movies: Movie[], criteria: string): Movie[] {
+    if (!criteria || typeof criteria !== 'string') {
       return [];
     }
-    return this.movies.filter(movie => new RegExp(criteria, 'gi').test(movie.key));
+    return movies.filter(movie => new RegExp(criteria, 'gi').test(movie.key));
   }
 }
