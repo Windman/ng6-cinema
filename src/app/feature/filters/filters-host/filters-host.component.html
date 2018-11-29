@@ -3,7 +3,7 @@
     #filter
     class="by-a-name"
     (complete)="onSearchComplete($event)"
-    (reset)="onResetFilter()"
+    (reset)="onResetFilter($event)"
   >
   </app-search>
   <app-genre-filter
@@ -11,7 +11,7 @@
     class="by-a-genre"
     [genres]="genres"
     (complete)="onSearchComplete($event)"
-    (reset)="onResetFilter()"
+    (reset)="onResetFilter($event)"
   >
   </app-genre-filter>
 </div>

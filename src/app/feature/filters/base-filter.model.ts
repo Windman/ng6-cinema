@@ -1,5 +1,3 @@
-import { Movie } from "src/app/model/movie";
-
 export interface BaseFilterModel {
-  apply(items: Movie[], criteria: any): any[];
+  model: (item: any, key: string, criteria: any) => boolean;
 }

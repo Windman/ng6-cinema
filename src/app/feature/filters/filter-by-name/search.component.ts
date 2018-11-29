@@ -12,9 +12,9 @@ import { BaseFilterComponent } from '../base-filter.component';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent extends BaseFilterComponent  implements OnInit {
+export class SearchComponent extends BaseFilterComponent implements OnInit {
   @Output() complete = new EventEmitter<any>();
-  @Output() reset = new EventEmitter();
+  @Output() reset = new EventEmitter<any>();
 
   @ViewChild(MatAutocomplete)
   private autoCmplt: MatAutocomplete;
@@ -29,7 +29,7 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
 
   constructor(private moviesStore: MoviesStore) {
     super();
-    this.name = 'byname';
+    this.name = 'key';
   }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
         } else {
           this.criteria = '';
           this.names = this.getNames(this.movies).slice();
-          this.reset.emit();
+          this.reset.emit({ name: this.name });
         }
       });
 
@@ -65,7 +65,7 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
 
   search(criteria: string): void {
     if (criteria) {
-      this.complete.emit({ name: 'byname', criteria: criteria });
+      this.complete.emit({ name: this.name, criteria: criteria });
       this.autoCmpliteTrigger.closePanel();
     }
   }
@@ -85,6 +85,6 @@ export class SearchComponent extends BaseFilterComponent  implements OnInit {
   clear(): void {
     this.criteria = '';
     this.searchFormControl.reset();
-    this.reset.emit();
+    this.reset.emit({ name: this.name });
   }
 }

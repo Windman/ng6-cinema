@@ -2,30 +2,17 @@ import { GenreFilterModel } from "./genre-filter-model";
 import { movies } from '../../../../../data/movie.mock-data';
 
 describe('Gender filter model', () => {
-  let model: GenreFilterModel;
+  let genrefilter: GenreFilterModel;
 
   beforeEach(() => {
-    model = new GenreFilterModel();
+    genrefilter = new GenreFilterModel();
   });
 
-  it('should filter movies by genres', () => {
-    const genres = ['adventure'];
-    expect(model.apply(movies, genres).length).toBe(7);
-  });
+  it('should filter movie by genre', () => {
+    const item = movies.find(i => i.id === 1);
+    const criteria = ['adventure'];
+    const itemKey = 'genres';
 
-  it('should return empty array no movies found by a genre', () => {
-    const genres = ['default'];
-    expect(model.apply(movies, genres).length).toBe(0);
+    expect(genrefilter.model(item, itemKey, criteria)).toBeTruthy();
   });
-
-  it('should return empty array if genres is empty', () => {
-    const genres = [];
-    expect(model.apply(movies, genres).length).toBe(0);
-  });
-
-  it('should return empty array if genres is null', () => {
-    const genres = null;
-    expect(model.apply(movies, genres).length).toBe(0);
-  });
-
 });

@@ -14,44 +14,44 @@ export class GenreFilterComponent extends BaseFilterComponent
   implements OnInit {
   @Input() genres: string[];
   @Output() complete = new EventEmitter<any>();
-  @Output() reset = new EventEmitter();
+  @Output() reset = new EventEmitter<any>();
 
   genresForm = new FormControl();
   model: GenreFilterModel;
 
   constructor(private moviesStore: MoviesStore) {
     super();
-    this.name = "bygenre";
+    this.name = "genres";
   }
 
   ngOnInit() {
     this.model = new GenreFilterModel();
 
     this.moviesStore.observe()
-    .pipe(skipWhile(x => !x.container))
-    .subscribe(state => {
-      const movies = state.container.movies;
-      if (movies.length > 0) {
-        this.genres = movies
-        .map(movie => movie.genres)
-        .reduce((p, k) => {
-          const newgenre = p.concat.apply(p, k);
-          const seen = {};
-          return newgenre.filter(item => {
-            return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-          }, []);
-        });
-      }
-    });
+      .pipe(skipWhile(x => !x.container))
+      .subscribe(state => {
+        const movies = state.container.movies;
+        if (movies.length > 0) {
+          this.genres = movies
+            .map(movie => movie.genres)
+            .reduce((p, k) => {
+              const newgenre = p.concat.apply(p, k);
+              const seen = {};
+              return newgenre.filter(item => {
+                return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+              }, []);
+            });
+        }
+      });
 
     this.genresForm.valueChanges.subscribe((genre: any) => {
       if (genre) {
         if (genre.length === 0) {
           this.criteria = "";
-          this.reset.emit();
+          this.reset.emit({ name: this.name });
         } else {
           this.criteria = genre;
-          this.complete.emit({ name: "bygenre", criteria: genre });
+          this.complete.emit({ name: this.name, criteria: genre });
         }
       }
     });
@@ -60,6 +60,6 @@ export class GenreFilterComponent extends BaseFilterComponent
   clear(): void {
     this.criteria = "";
     this.genresForm.reset();
-    this.reset.emit();
+    this.reset.emit({ name: this.name });
   }
 }
