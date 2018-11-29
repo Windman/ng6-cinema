@@ -54,7 +54,6 @@ export class FiltersHostComponent implements OnInit {
     delete this.search[event.name];
     const predicate = this.filter(event.name, event.criteria);
     const items = this.movies.filter(x => {
-      console.log(x.key, predicate(x));
       return predicate(x);
     });
     this.moviesStore.dispatch(new MoviesSuccessEvent(items));
