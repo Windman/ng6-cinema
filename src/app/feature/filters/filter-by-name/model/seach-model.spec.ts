@@ -2,34 +2,18 @@ import { movies } from '../../../../../data/movie.mock-data';
 import { SearchModel } from 'src/app/feature/filters/filter-by-name/model/search-model';
 
 describe('Search  by a name filter model', () => {
-  let model: SearchModel;
+  let search: SearchModel;
 
   beforeEach(() => {
-    model = new SearchModel();
+    search = new SearchModel();
   });
 
-  it('should filter movies by a name', () => {
+  it('should filter by a name', () => {
+    const item = movies.find(i => i.id === 1);
     const criteria = 'deadpool';
-    expect(model.apply(movies, criteria).length).toBe(1);
+    const itemKey = 'key';
+
+    expect(search.model(item, itemKey, criteria)).toBeTruthy();
   });
 
-  it('should filter movies by a criteria', () => {
-    const criteria = 'd';
-    expect(model.apply(movies, criteria).length).toBe(10);
-  });
-
-  it('should return empty array no movies found by a criteria', () => {
-    const criteria = 'default';
-    expect(model.apply(movies, criteria).length).toBe(0);
-  });
-
-  it('should return empty array if criteria is empty', () => {
-    const criteria = '';
-    expect(model.apply(movies, criteria).length).toBe(0);
-  });
-
-  it('should return empty array if criteria is null', () => {
-    const criteria = null;
-    expect(model.apply(movies, criteria).length).toBe(0);
-  });
 });

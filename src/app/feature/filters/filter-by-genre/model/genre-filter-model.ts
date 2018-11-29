@@ -1,16 +1,19 @@
-import { Movie } from "../../../../model/movie";
 import { BaseFilterModel } from "../../base-filter.model";
 
 export class GenreFilterModel implements BaseFilterModel {
+  model = (item, key, criteria) => {
+    const lookup = {};
+    criteria.forEach(g => {
+      lookup[g] = 1;
+    })
+    return item[key].filter(genre => {
+      return lookup[genre] ? true : false;
+        }).length === criteria.length;
+  };
+}
 
-  constructor() {
-
-  }
-
-  apply(movies: Movie[], genres: string[]): Movie[] {
-    if (!genres || typeof genres === 'string' || genres.length === 0) {
-      return [];
-    }
+/*
+apply(movies: Movie[], genres: string[]): Movie[] {
 
     const lookup = {};
     genres.forEach(g => {
@@ -23,5 +26,4 @@ export class GenreFilterModel implements BaseFilterModel {
       return match;
       });
   }
-
-}
+*/
