@@ -1,3 +1,4 @@
+import { CriteriaType } from './../filter-types';
 import { GenreFilterModel } from './../filter-by-genre/model/genre-filter-model';
 import { Movie } from 'src/app/model/movie';
 import { Component, OnInit, Input, ViewChildren } from '@angular/core';
@@ -32,7 +33,7 @@ export class FiltersHostComponent implements OnInit {
     this.moviesStore.dispatch(new MoviesSuccessEvent(this.movies));
   }
 
-  onSearchComplete(event: any): void {
+  onSearchComplete(event: CriteriaType): void {
     if (!event) {
       return;
     }
@@ -44,7 +45,7 @@ export class FiltersHostComponent implements OnInit {
     this.moviesStore.dispatch(new MoviesSuccessEvent(items));
   }
 
-  onResetFilter(event: any): void {
+  onResetFilter(event: CriteriaType): void {
     if (!event) {
       return;
     }

@@ -4,6 +4,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { GenreFilterModel } from "./model/genre-filter-model";
 import { MoviesStore } from "../../../model/movies-state/movies-store";
 import { BaseFilterComponent } from "../base-filter.component";
+import { CriteriaType } from '../filter-types';
 
 @Component({
   selector: "app-genre-filter",
@@ -13,8 +14,8 @@ import { BaseFilterComponent } from "../base-filter.component";
 export class GenreFilterComponent extends BaseFilterComponent
   implements OnInit {
   @Input() genres: string[];
-  @Output() complete = new EventEmitter<any>();
-  @Output() reset = new EventEmitter<any>();
+  @Output() complete = new EventEmitter<CriteriaType>();
+  @Output() reset = new EventEmitter<CriteriaType>();
 
   genresForm = new FormControl();
   model: GenreFilterModel;
@@ -44,7 +45,7 @@ export class GenreFilterComponent extends BaseFilterComponent
         }
       });
 
-    this.genresForm.valueChanges.subscribe((genre: any) => {
+    this.genresForm.valueChanges.subscribe((genre: string[]) => {
       if (genre) {
         if (genre.length === 0) {
           this.criteria = "";

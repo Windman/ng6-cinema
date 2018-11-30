@@ -32,16 +32,6 @@ import { Movie } from '../../../model/movie';
     ])
   ]
 })
-export class MovieItemComponent implements OnInit {
+export class MovieItemComponent {
   @Input() movie: Movie;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  onClick(event: any): void {
-
-  }
-
 }
