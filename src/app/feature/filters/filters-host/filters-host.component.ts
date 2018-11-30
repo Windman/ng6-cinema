@@ -13,10 +13,8 @@ import { SearchModel } from '../filter-by-name/model/search-model';
 })
 export class FiltersHostComponent implements OnInit {
   @Input() movies: Movie[];
-  @ViewChildren('filter') filtersComponents: any;
 
   genres: string[] = [];
-
   search: any = {};
   model: any = {};
 

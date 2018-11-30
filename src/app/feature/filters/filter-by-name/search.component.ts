@@ -6,6 +6,7 @@ import { SearchModel } from './model/search-model';
 import { Movie } from '../../../model/movie';
 import { MoviesStore } from '../../../model/movies-state/movies-store';
 import { BaseFilterComponent } from '../base-filter.component';
+import { CriteriaType } from 'src/app/feature/filters/filter-types';
 
 @Component({
   selector: 'app-search',
@@ -13,8 +14,8 @@ import { BaseFilterComponent } from '../base-filter.component';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent extends BaseFilterComponent implements OnInit {
-  @Output() complete = new EventEmitter<any>();
-  @Output() reset = new EventEmitter<any>();
+  @Output() complete = new EventEmitter<CriteriaType>();
+  @Output() reset = new EventEmitter<CriteriaType>();
 
   @ViewChild(MatAutocomplete)
   private autoCmplt: MatAutocomplete;
