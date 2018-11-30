@@ -11,19 +11,17 @@ import { Movie } from '../../model/movie';
 })
 export class CinemaComponent extends BaseComponent implements OnInit {
   movies: Movie[];
-  
+
   constructor(private moviesService: MoviesService) {
     super();
   }
 
   ngOnInit() {
-    this.moviesService.movies$
-    .pipe(
-      takeUntil(this.ngUnsubscribe)
-    ).subscribe(movies => {
-      this.movies = movies;
-    });
-
-    this.moviesService.getMovies();
+    this.moviesService
+      .getMovies()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(movies => {
+        this.movies = movies;
+      });
   }
 }
