@@ -20,10 +20,6 @@ export class MoviesService {
     return of(movies.map(item => new Movie(item)));
   }
 
-  refreshMovies(items: Movie[]): void {
-    this.movies.next(items);
-  }
-
   getMovie(id: number): Observable<Movie> {
     return of(
       movies
