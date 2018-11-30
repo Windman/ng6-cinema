@@ -1,10 +1,12 @@
-import { GenreFilterModel } from './../filter-by-genre/model/genre-filter-model';
-import { Movie } from 'src/app/model/movie';
-import { Component, OnInit, Input, ViewChildren } from '@angular/core';
-import { MoviesStore } from 'src/app/model/movies-state/movies-store';
-import { MoviesSuccessEvent, MoviesResetEvent } from 'src/app/model/movies-state/movies-events';
+import { GenreFilterModel } from './../filter-by-genre/model/genre-filter-model'
+import { Movie } from 'src/app/model/movie'
+import { Component, OnInit, Input, ViewChildren } from '@angular/core'
+import { MoviesStore } from 'src/app/model/movies-state/movies-store'
+import {
+  MoviesSuccessEvent
+} from 'src/app/model/movies-state/movies-events'
 import { GENRE_TYPE } from '../../../model/movie'
-import { SearchModel } from '../filter-by-name/model/search-model';
+import { SearchModel } from '../filter-by-name/model/search-model'
 
 @Component({
   selector: 'app-filters-host',
@@ -12,68 +14,68 @@ import { SearchModel } from '../filter-by-name/model/search-model';
   styleUrls: ['./filters-host.component.scss']
 })
 export class FiltersHostComponent implements OnInit {
-  @Input() movies: Movie[];
-  @ViewChildren('filter') filtersComponents: any;
+  @Input() movies: Movie[]
+  @ViewChildren('filter') filtersComponents: any
 
-  genres: string[] = [];
+  genres: string[] = []
 
-  search: any = {};
-  model: any = {};
+  search: any = {}
+  model: any = {}
 
-  constructor(private moviesStore: MoviesStore) { }
+  constructor(private moviesStore: MoviesStore) {}
 
   ngOnInit() {
-    this.model['key'] = new SearchModel().model;
-    this.model['genres'] = new GenreFilterModel().model;
+    this.model['key'] = new SearchModel().model
+    this.model['genres'] = new GenreFilterModel().model
 
+    // tslint:disable-next-line:forin
     for (const key in GENRE_TYPE) {
-      this.genres.push(key);
+      this.genres.push(key)
     }
 
-    this.moviesStore.dispatch(new MoviesSuccessEvent(this.movies));
+    this.moviesStore.dispatch(new MoviesSuccessEvent(this.movies))
   }
 
   onSearchComplete(event: any): void {
     if (!event) {
-      return;
+      return
     }
 
-    const predicate = this.filter(event.name, event.criteria);
+    const predicate = this.filter(event.name, event.criteria)
     const items = this.movies.filter(x => {
-      console.log(x.key, predicate(x));
-      return predicate(x);
-    });
-    this.moviesStore.dispatch(new MoviesSuccessEvent(items));
+      return predicate(x)
+    })
+    this.moviesStore.dispatch(new MoviesSuccessEvent(items))
   }
 
   onResetFilter(event: any): void {
     if (!event) {
-      return;
+      return
     }
 
-    delete this.search[event.name];
-    const predicate = this.filter(event.name, event.criteria);
+    delete this.search[event.name]
+    const predicate = this.filter(event.name, event.criteria)
     const items = this.movies.filter(x => {
-      return predicate(x);
-    });
-    this.moviesStore.dispatch(new MoviesSuccessEvent(items));
+      return predicate(x)
+    })
+    this.moviesStore.dispatch(new MoviesSuccessEvent(items))
   }
 
   filter(name: string, value: string) {
-    this.search[name] = value;
+    this.search[name] = value
 
-    const predicate = Object
-      .keys(this.search)
-      .reduce((memo: (x: any) => boolean, key) => {
-        const criteria = this.search[key];
+    const predicate = Object.keys(this.search).reduce(
+      (memo: (x: any) => boolean, key) => {
+        const criteria = this.search[key]
         if (criteria) {
-          return item => memo(item) && this.model[key](item, key, criteria);
+          return item => memo(item) && this.model[key](item, key, criteria)
         }
 
-        return memo;
-      }, x => true);
+        return memo
+      },
+      x => true
+    )
 
-    return predicate;
+    return predicate
   }
-
 }
