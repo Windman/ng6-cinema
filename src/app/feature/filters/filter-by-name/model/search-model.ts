@@ -1,5 +1,4 @@
-import { BaseFilterModel } from '../../base-filter.model';
 
-export class SearchModel implements BaseFilterModel {
+export class SearchModel {
   model = (item, key, criteria) => ('' + item[key.toLowerCase()]).toLowerCase().indexOf(criteria) >= 0;
 }

@@ -1,6 +1,4 @@
-import { BaseFilterModel } from "../../base-filter.model";
-
-export class GenreFilterModel implements BaseFilterModel {
+export class GenreFilterModel {
   model = (item, key, criteria) => {
     const lookup = {};
     criteria.forEach(g => {
